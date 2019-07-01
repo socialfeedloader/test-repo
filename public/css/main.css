@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700");
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 @font-face {
     font-family: 'simple-Line-Icons';
     src: url("../fonts/simple-Line-Icons.eot");
@@ -2636,7 +2637,7 @@ body {
     background-color: #11cd89ba;
     /* background-image: url("images/responsive.svg"); */
     /* background-image: url("images/layout.png"); */
-    font-family: "Muli", sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-size: 14px;
     background-repeat: no-repeat, repeat;
     color: #5A5A5A;
@@ -5440,7 +5441,7 @@ select.form-control:not([size]):not([multiple]) {
     -moz-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
     -webkit-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.05);
-    font-family: "Muli", sans-serif;
+    font-family: 'Quicksand', sans-serif;
     border-color: #ededed
 }
 
@@ -5456,7 +5457,7 @@ select.form-control:not([size]):not([multiple]) {
 
 .panel-group .panel .panel-title {
     font-size: 14px;
-    font-family: "Muli", sans-serif
+    font-family: 'Quicksand', sans-serif;
 }
 
 .panel-group .panel .panel-title>a {
