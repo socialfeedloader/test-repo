@@ -3,16 +3,16 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 
-var senderEmail = '';
-var senderPass = '';
+var senderEmail = 'socialfeed1234@gmail.com'; // add sender's email address
+var senderPass = 'socialfeed64797'; // add your password
 
 var transport = nodemailer.createTransport(smtpTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-        user: senderEmail, // add sender's email address
-        pass: senderPass // add your password
+        user: senderEmail, 
+        pass: senderPass 
     }
 }));
 

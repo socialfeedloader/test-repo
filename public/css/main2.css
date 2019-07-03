@@ -1,0 +1,15 @@
+.email-error {
+    display: none;
+    background-color: rgb(245, 11, 11);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 4px;
+}
+
+.errorMessages span {
+    font-weight: bold;
+}
+
+.errorMessages p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 5px;
+}

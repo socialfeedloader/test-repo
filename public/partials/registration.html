@@ -40,18 +40,20 @@
                                     </form>
                                     <form class="form-auth-small" name="registrationForm" ng-submit="saveRegistration(registrationData)">
                                         <div class="form-group">
-                                            <label for="signup-email" class="control-label sr-only">Email</label>
-                                            <input name="fullname" type="text" class="form-control" id="" placeholder="Full Name" data-ng-model="registrationData.fullname" required>
+                                            <label for="fullname" class="control-label sr-only">Full Name</label>
+                                            <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Full Name" data-ng-model="registrationData.fullname" required>
+                                        </div>
+                                        <div class="email-error" id="email-error">
+                                            <p>Error : This Email is already registered</p>
                                         </div>
                                         <div class="form-group">
-                                            <label for="signup-email" class="control-label sr-only">Email</label>
-                                            <input name="email" type="email" class="form-control" id="signup-email" placeholder="Your email" data-ng-model="registrationData.email" required>
+                                            <label for="email" class="control-label sr-only">Email</label>
+                                            <input name="email" type="email" class="form-control" id="email" placeholder="Your email" data-ng-focus="hideError()" data-ng-model="registrationData.email" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="signup-email" class="control-label sr-only">Phone-no</label>
-                                            <input name="phone" type="text" class="form-control" id="signup-email" placeholder="Your Phone-no" data-ng-model="registrationData.phone" required>
+                                            <label for="phone" class="control-label sr-only">Phone-no</label>
+                                            <input name="phone" type="text" class="form-control" id="phone" placeholder="Your Phone-no" data-ng-model="registrationData.phone" required>
                                         </div>
-
 
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTER</button>
                                         <div class="bottom">

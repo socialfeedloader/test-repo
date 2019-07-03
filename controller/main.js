@@ -33,29 +33,38 @@ exports.saveRegistration = function(req, res) {
                 if(err){
                     console.log('mongodb-error:', err.code);
                     res.json({error: err.code});
+                }else{
+                    callback(null, result);
                 }
-                callback(null, result);
             });     
         }
     ], function(err, result){
-        if(result==null){
-            console.log('null result'); //TODO modify
+        res.setHeader('content-type', 'application/json');
+        res.json({result:result});
+        if(result==null){ // Contingency plan!!
+            console.log('null-result-from-db, data not saved');
+        }else{
+            console.log('saved-data:',result);
+            var str = fs.readFileSync(process.cwd() + '/views/create_password.ejs', 'utf8');
+            var emailJSON = {
+                'name': req.body.fullName,
+                'accessUrl': req.protocol + "://" + req.get('host') + '/create-user-passsword/' + token
+            };
+            htmlContent = ejs.render(str, emailJSON);
+            var mailOptions = {
+                recipient: result.email,
+                subject: 'Create Your Password',
+                html: htmlContent
+            };
+            communication.sendEmail(mailOptions, function(err, result){
+                if(!err){
+                    console.log("sendEmail-result:", result);
+                }
+                else{
+                    console.log("sendMail-error",err);
+                }
+            })
         }
-        console.log('saved-data:',result);
-        var str = fs.readFileSync(process.cwd() + '/views/create_password.ejs', 'utf8');
-        var emailJSON = {
-            'name': req.body.fullName,
-            'accessUrl': req.protocol + "://" + req.get('host') + '/create-user-passsword/' + token
-        };
-        htmlContent = ejs.render(str, emailJSON);
-        var mailOptions = {
-            recipient: result.email,
-            subject: 'Create Your Password',
-            html: htmlContent
-        };
-        communication.sendEmail(mailOptions, function(err, result){
-            console.log("sendEmail-result:", result);
-        })
     })
     //-------------------------------------------------------
     //var registrationData = new registrationModel(req.body);
