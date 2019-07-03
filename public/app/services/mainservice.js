@@ -10,20 +10,14 @@
         return service;
 
         function saveRegistration(data) {
+            console.log('from service', data);
             return $http.post('/saveRegistration', data).then(handleSuccess, handleError);
         }
-
-
         function handleSuccess(res) {
             return res.data;
         }
-
         function handleError(res) {
             return $q.reject(res.data);
         }
     }
-
-
-
-
 })();

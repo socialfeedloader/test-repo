@@ -15,7 +15,7 @@ app.use(bodyParser.json({}));
 app.use(express.static(__dirname + '/public'));
 
 
-// require('./routes/routes')(app);
+require('./routes/routes')(app);
 require('./database/db');
 
 
@@ -23,6 +23,7 @@ require('./database/db');
 app.route('/*').get(function(req, res) {
     res.sendFile(path.resolve('./public' + '/index.html'));
 });
-server.listen(4000, function() {
-    console.log('Server is listening on port 4000');
+var port= 3000;
+server.listen(port, function() {
+    console.log('Server is listening on port ' + port);
 })

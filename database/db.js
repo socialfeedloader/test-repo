@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-var dburi = 'mongodb://127.0.0.1:27017/batch2';
+var dburi = 'mongodb://127.0.0.1:27017/SocialFeedViewer';
 
 mongoose.connect(dburi, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
