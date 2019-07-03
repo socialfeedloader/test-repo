@@ -23,6 +23,6 @@ require('./database/db');
 app.route('/*').get(function(req, res) {
     res.sendFile(path.resolve('./public' + '/index.html'));
 });
-server.listen(3000, function() {
-    console.log('Server is listening on port 3000');
+server.listen(4000, function() {
+    console.log('Server is listening on port 4000');
 })

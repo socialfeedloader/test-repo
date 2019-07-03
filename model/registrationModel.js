@@ -3,10 +3,12 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
 var registrationSchema = new schema({
-    Fullname: { type: String },
+    fullname: { type: String },
     email: { type: String },
     phone: { type: Number },
-    pass: { type: String },
+    token: { type: String },
+    tokenStatus: { type: Boolean },
+    password: { type: String },
     created_at: { type: Date, default: Date.now }
 });
 

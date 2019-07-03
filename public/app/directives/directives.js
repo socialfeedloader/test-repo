@@ -1,4 +1,4 @@
-loginapp.directive("validSubmit", ["$parse", function($parse) {
+socialmedia.directive("validSubmit", ["$parse", function($parse) {
     return {
         require: 'form',
         link: function(scope, element, iAttrs, form) {
