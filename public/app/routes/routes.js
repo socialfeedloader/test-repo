@@ -3,12 +3,12 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
         .state('home', {
             url: '/',
             templateUrl: '/partials/home.html',
-            // controller: 'loginController'
+            //controller: 'loginController'
         })
         .state('login', {
             url: '/login',
             templateUrl: '/partials/login.html',
-            controller: 'loginController'
+            //controller: 'loginController'
         })
         .state('register', {
             url: '/registration',

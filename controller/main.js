@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var sleep = require('sleep');
 require('../model/registrationModel.js');
 var registrationModel = mongoose.model('registrationModel');
 
@@ -8,14 +9,15 @@ var waterfall = require('async-waterfall');
 var ejs = require('ejs');
 
 var communication = require('../communication');
+
 exports.mainFn = function(req, res) {
-    res.render('layout', { title: "registrationForm" });
-    registrationModel.find({}, function(err, result) {
-        res.render('layout', {
-            title: "registrationForm",
-            result: result
-        });
-    });
+    // res.render('layout', { title: "registrationForm" });
+    // registrationModel.find({}, function(err, result) {
+    //     res.render('layout', {
+    //         title: "registrationForm",
+    //         result: result
+    //     });
+    // });
 };
 
 exports.saveRegistration = function(req, res) {
@@ -29,6 +31,7 @@ exports.saveRegistration = function(req, res) {
             req.body.token = token;
             req.body.tokenStatus = false;
             var registrationData = new registrationModel(req.body);
+            sleep.msleep(3000); // make the server delay
             registrationData.save(function(err, result){
                 if(err){
                     console.log('mongodb-error:', err.code);
@@ -77,13 +80,13 @@ exports.saveRegistration = function(req, res) {
 };
 exports.getUserList = function(req, res) {
 
-    registrationModel.find({}, function(err, result) {
-        console.log(result)
-        res.status(200).json({ result: result });
-    })
-    exports.getUserData = function(req, res) {
-        registrationModel.findOne({ _id: req.query.id }, function(err, result) {
-            res.status(200).json({ result: result });
-        })
-    }
+    // registrationModel.find({}, function(err, result) {
+    //     console.log(result)
+    //     res.status(200).json({ result: result });
+    // })
+    // exports.getUserData = function(req, res) {
+    //     registrationModel.findOne({ _id: req.query.id }, function(err, result) {
+    //         res.status(200).json({ result: result });
+    //     })
+    // }
 }

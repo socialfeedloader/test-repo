@@ -1,20 +1,9 @@
-.email-error {
-    display: none;
-    background-color: rgb(245, 11, 11);
-    border: 2px solid rgb(0, 0, 0);
-    border-radius: 4px;
-}
-
-.errorMessages span {
-    font-weight: bold;
-}
-
-.errorMessages p {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 5px;
-}
-
-/* Loading bar re-make */
+/*! 
+ * angular-loading-bar v0.9.0
+ * https://chieffancypants.github.io/angular-loading-bar
+ * Copyright (c) 2016 Wes Cruver
+ * License: MIT
+ */
 
 /* Make clicks pass-through */
 #loading-bar,
@@ -47,13 +36,13 @@
   -o-transition: width 350ms;
   transition: width 350ms;
 
-  background: rgb(253, 120, 10);
+  background: #29d;
   position: fixed;
   z-index: 10002;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 2px;
   border-bottom-right-radius: 1px;
   border-top-right-radius: 1px;
 }
@@ -84,15 +73,12 @@
 }
 
 #loading-bar-spinner .spinner-icon {
-  width: 30px;
-  height: 30px;
+  width: 14px;
+  height: 14px;
 
   border:  solid 2px transparent;
-  border-top-color:  rgb(0, 47, 255);
-  border-left-color: yellow; 
-  border-right-color: green;
-  border-bottom-color: rgb(247, 7, 7);
-
+  border-top-color:  #29d;
+  border-left-color: #29d;
   border-radius: 50%;
 
   -webkit-animation: loading-bar-spinner 400ms linear infinite;
