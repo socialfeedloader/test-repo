@@ -1,4 +1,4 @@
-socialmedia.controller('registrationController', ['$scope', '$state', 'mainService', function($scope, $state, mainService) {
+socialmedia.controller('registrationController', ['$scope', '$state', 'toaster', 'mainService', function($scope, $state, toaster, mainService) {
     var isErrorHidden = true;
     $scope.hideError = function(){
         var emailError = document.getElementById('email-error');
@@ -16,18 +16,19 @@ socialmedia.controller('registrationController', ['$scope', '$state', 'mainServi
         .then(function(response) {
             console.log('response-from-server',response); //Response(error codes) from the server for db operations
             if(response.error!=11000){
-                $state.go('home');
+                toaster.pop('success',"user created","Check you email");
+                $state.go('login');
             }
             else{
                 isErrorHidden = false;
                 var emailError = document.getElementById('email-error');
                 emailError.style.display = "block";
+                toaster.pop('error',"error","Enter another email");
             }
         })
         .catch(function(error) {
         })
     }
-
 }])
 
 socialmedia.controller('mainController', ['$scope', 'getUserList', 'mainService', function($scope, getUserList) {
