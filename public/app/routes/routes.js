@@ -19,4 +19,8 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
             url: '/reset_password',
             templateUrl: '/partials/forgot_password.html'
         })
+        .state('create-user-password', {
+            url: '/create-user-password/:token',
+            templateUrl: '/partials/create_user_password.html'
+        })
 }]);
