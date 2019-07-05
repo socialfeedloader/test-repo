@@ -20,7 +20,6 @@
     "particlesjs": "^2.2.3",
     "path": "^0.12.7",
     "randomstring": "^1.1.5",
-    "request": "^2.88.0",
-    "sleep": "^6.1.0"
+    "request": "^2.88.0"
   }
 }
