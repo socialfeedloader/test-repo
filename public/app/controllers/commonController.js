@@ -31,6 +31,34 @@ socialmedia.controller('registrationController', ['$scope', '$state', 'toaster',
     }
 }])
 
+socialmedia.controller('createPasswordController', ['$scope', 'toaster', '$stateParams', 'commonService', function($scope, toaster, $stateParams, commonService){
+    $scope.createPassword = function(data){
+        //console.log('userPassword:',data.password);
+        //console.log('userConfirmPassword:',data.confirmPassword);
+        if (data.password == data.confirmPassword) {
+                data.token = $stateParams.token;
+                commonService.savePassword(data)
+                    .then(function(response) {
+                        // toasty.success({
+                        //     title: response.title,
+                        //     msg: response.message
+                        // });
+                    })
+                    .catch(function(error) {
+                        // toasty.error({
+                        //     title: error.title,
+                        //     msg: error.message
+                        // });
+                    });
+            } else {
+                //toasty.error({
+                  //  title: 'Error!',
+                  //  msg: 'Password & Confirm Password should be same'
+                //});
+            }
+    }
+}])
+
 socialmedia.controller('mainController', ['$scope', 'getUserList', 'mainService', function($scope, getUserList) {
     $scope.userList = getUserList.data.result;
     console.log(getUserList);

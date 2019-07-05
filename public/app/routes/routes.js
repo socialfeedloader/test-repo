@@ -21,6 +21,7 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
         })
         .state('create-user-password', {
             url: '/create-user-password/:token',
-            templateUrl: '/partials/create_user_password.html'
+            templateUrl: '/partials/create_user_password.html',
+            controller: 'createPasswordController',
         })
 }]);
