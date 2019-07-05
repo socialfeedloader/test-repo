@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var sleep = require('sleep');
+//var sleep = require('sleep');
 require('../model/registrationModel.js');
 var registrationModel = mongoose.model('registrationModel');
 
@@ -32,7 +32,7 @@ exports.saveRegistration = function(req, res) {
             req.body.token = token;
             req.body.tokenStatus = false;
             var registrationData = new registrationModel(req.body);
-            sleep.msleep(3000); // make the server delay
+            //sleep.msleep(3000); // make the server delay
             registrationData.save(function(err, result){
                 if(err){
                     console.log('mongodb-error:', err.code);
@@ -90,6 +90,7 @@ exports.createUserPassword = function(req, res){
             res.status(498).json({ message: "Sorry! Token is expired or not valid" });
         } else {
             //res.status(200).json({ result: result });
+            res.sendFile(path.resolve('./public' + '/index.html'));
         }
     });
 }
