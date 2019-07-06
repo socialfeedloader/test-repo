@@ -17,7 +17,7 @@ socialmedia.controller('registrationController', ['$scope', '$state', 'toaster',
             console.log('response-from-server',response); //Response(error codes) from the server for db operations
             if(response.error!=11000){
                 toaster.pop('success',"user created","Check you email");
-                $state.go('login');
+                //$state.go('login');
             }
             else{
                 isErrorHidden = false;
@@ -31,31 +31,45 @@ socialmedia.controller('registrationController', ['$scope', '$state', 'toaster',
     }
 }])
 
-socialmedia.controller('createPasswordController', ['$scope', 'toaster', '$stateParams', 'commonService', function($scope, toaster, $stateParams, commonService){
+socialmedia.controller('createPasswordController', ['$state', '$scope', 'toaster', '$stateParams', 'commonService', function($state, $scope, toaster, $stateParams, commonService){
     $scope.createPassword = function(data){
         //console.log('userPassword:',data.password);
         //console.log('userConfirmPassword:',data.confirmPassword);
+        console.log('passord:',$stateParams);
         if (data.password == data.confirmPassword) {
                 data.token = $stateParams.token;
                 commonService.savePassword(data)
                     .then(function(response) {
-                        // toasty.success({
-                        //     title: response.title,
-                        //     msg: response.message
-                        // });
+                        toaster.pop('success','password saved successfully','Now you could login');
+                        $state.go('login');
+                        //console.log('password saved:', response);
                     })
                     .catch(function(error) {
-                        // toasty.error({
-                        //     title: error.title,
-                        //     msg: error.message
-                        // });
+                        toaster.pop('error','password was not saved','Please register again');
+                        //console.log('password does not match:', error);
                     });
             } else {
-                //toasty.error({
-                  //  title: 'Error!',
-                  //  msg: 'Password & Confirm Password should be same'
-                //});
+                toaster.pop('error','password does not match','Please enter matching password');
+                console.log('password does not match');
             }
+    }
+}])
+
+socialmedia.controller('loginController', ['$state', '$scope', 'mainService', 'toaster', 'userAuth', function($state, $scope, mainService, toaster, userAuth){
+    $scope.login = function(data) {
+        mainService.login(data)
+            .then(function(response) {
+                console.log(response);
+                toaster.pop('success','logged in','As '+ response.username);
+                var user = {};
+                user.access_token = response.token;
+                userAuth.setCurrentUser(user);
+                $state.go('dashboard');
+            })
+            .catch(function(error) {
+                console.log('login-error',error);
+                toaster.pop('error','login error', error.message);
+            });
     }
 }])
 

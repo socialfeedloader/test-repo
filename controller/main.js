@@ -7,6 +7,9 @@ var fs = require('fs');
 var waterfall = require('async-waterfall');
 var ejs = require('ejs');
 var path = require('path');
+var jwt = require('jsonwebtoken');
+var secretKey = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
+var bcrypt = require('bcrypt-nodejs');
 
 var communication = require('../communication');
 
@@ -50,7 +53,7 @@ exports.saveRegistration = function(req, res) {
             var str = fs.readFileSync(process.cwd() + '/views/create_password.ejs', 'utf8');
             var emailJSON = {
                 'name': req.body.fullName,
-                'accessUrl': req.protocol + "://" + req.get('host') + '/create-user-password/?token=' + token
+                'accessUrl': req.protocol + "://" + req.get('host') + '/create-user-password/' + token
             };
             htmlContent = ejs.render(str, emailJSON);
             var mailOptions = {
@@ -78,15 +81,66 @@ exports.saveRegistration = function(req, res) {
     //});
 };
 
-exports.createUserPassword = function(req, res){
-    console.log('token:',req.query.token)
+exports.createUserPassword = function(req, res) {
     registrationModel.findOne({ token: req.query.token }, { password: 0 }, function(err, result) {
         if (result == null) {
             res.status(498).json({ message: "Sorry! Token is expired or not valid" });
         } else if (result.tokenStatus == true || result.tokenStatus == null) {
             res.status(498).json({ message: "Sorry! Token is expired or not valid" });
         } else {
-            res.sendFile(path.resolve('./public' + '/index.html'));
+            //console.log('createUserPassword-result:',result);
+            res.status(200).json({ result: result });
+            //res.sendFile(path.resolve('./public' + '/index.html'));
+        }
+    });
+}
+
+exports.savePassword = function(req, res){
+    //console.log('passwords:',req.body);
+    //console.log('token:',req.body.token);
+    //console.log('password:',req.body.password);
+    var hashPassword = bcrypt.hashSync(req.body.password);
+    registrationModel.updateOne({'token':req.body.token}, {
+        $set: {
+            "password": hashPassword,
+            "tokenStatus": true //TODO
+        }
+    }, function(updateErr, updateResult) {
+        if(!updateErr){
+            console.log('password-saved-successfully:', updateResult);
+            res.json({ message: "password-saved-successfully"});
+        }else{
+            res.json({ message: "password-was-not-saved"});
+            console.log('password-save-error:', updateErr);
+        }
+    })   
+}
+
+exports.login = function(req, res) {
+    console.log('login-data:',req.body);
+    registrationModel.findOne({ 'email': req.body.email }, function(err, result) {
+        if (result) {
+            console.log('login-db-result:', result);
+            if (result.tokenStatus) {
+                var checkPassword = bcrypt.compareSync(req.body.password, result.password);
+                console.log(checkPassword);
+                if (checkPassword) {
+                    console.log("checkPassword:", checkPassword);
+                    var jwtObj = {
+                        _id: result._id
+                    };
+                    var token = jwt.sign(jwtObj, secretKey, {
+                        expiresIn: 86400 // expires in 24 hours
+                    });
+                    res.status(200).json({ token: token, username : result.fullname });
+                } else {
+                    res.status(401).send({ message: 'The username and password you entered don\'t match!' });
+                }
+            } else {
+                res.status(401).json({ message: 'Sorry, Server doesn\'t recognize that username!' });
+            }
+        } else {
+            res.status(500).json({ message: 'Server problem, please try again' });
         }
     });
 }

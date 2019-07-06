@@ -39,14 +39,14 @@
                                     <p class="lead">Log in</p>
                                 </div>
                                 <div class="body">
-                                    <form class="form-auth-small">
+                                    <form class="form-auth-small" ng-submit="login(logindata)">
                                         <div class="form-group">
                                             <label for="signin-email" class="control-label sr-only">Email</label>
-                                            <input type="email" class="form-control" id="signin-email" value="" placeholder="User Name" required>
+                                            <input type="email" class="form-control" id="signin-email" value="" placeholder="Email" ng-model="logindata.email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="signin-password" class="control-label sr-only">Password</label>
-                                            <input type="password" class="form-control" id="signin-password" value="" placeholder="Password">
+                                            <input type="password" class="form-control" id="signin-password" value="" placeholder="Password" ng-model="logindata.password" required>
                                         </div>
                                         <div class="form-group clearfix">
                                             <!-- <i class="far fa-check-circle"></i> -->

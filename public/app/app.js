@@ -1,5 +1,5 @@
     var socialmedia = angular.module('mysocialmedia', [
-        'ui.router', 'angular-loading-bar', 'toaster', 'ngAnimate'
+        'ui.router', 'angular-loading-bar', 'toaster', 'ngAnimate', 'angular-storage'
     ]);
 
     socialmedia.config(function($locationProvider) {
