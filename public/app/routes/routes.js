@@ -64,8 +64,6 @@ function userBeforeLogin($q, userAuth, $state) {
     console.log("access-token:", access_token);
     if (access_token) {
         deferred.reject({ session: true, role: 'admin' });
-        //$toaster.pop('error','login error','user already logged in');
-        $state.go('register');
     } else {
         deferred.resolve();
     }
