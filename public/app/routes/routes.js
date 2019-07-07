@@ -7,20 +7,58 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
         })
         .state('dashboard', {
             url: '/dashboard',
-
+            abstract: true,
             templateUrl: 'partials/dashboard.html'
         })
         .state('dashboard.home', {
             url: '/userdashboard',
-            templateUrl: 'partials/dashboard_home.html'
+            templateUrl: 'partials/dashboard_main.html'
         })
         .state('dashboard.profile', {
             url: '/userdashboard',
             templateUrl: 'partials/profile.html'
         })
+        .state('dashboard.facebook', {
+            url: '/facebook',
+            templateUrl: 'partials/facebook.html'
+        })
+        .state('dashboard.instagram', {
+            url: '/instagram',
+            templateUrl: 'partials/instagram.html'
+        })
+        .state('dashboard.twitter', {
+            url: '/twitter',
+            templateUrl: 'partials/twitter.html'
+        })
         .state('dashboard.editprofile', {
             url: '/editprofile',
             templateUrl: 'partials/edit profile.html'
+        })
+
+    // Temp routes until login url not defined
+
+    .state('dashboard.facebookfeeds', {
+            url: '/facebookfeeds',
+            templateUrl: 'partials/facebookfeeds.html'
+        })
+        .state('dashboard.twitterfeeds', {
+            url: 'twitterfeeds',
+            templateUrl: 'partials/twitterfeeds.html'
+        })
+        .state('dashboard.instagramfeeds', {
+            url: '/instagramfeeds',
+            templateUrl: 'partials/instagramfeeds.html'
+        })
+
+    // Temp routes ends
+
+    .state('dashboard.changepassword', {
+            url: '/change_user_password',
+            templateUrl: 'partials/changepassword.html'
+        })
+        .state('dashboard.logout', {
+            url: '/logout',
+            templateUrl: 'partials/logout.html'
         })
         .state('register', {
             url: '/registration',

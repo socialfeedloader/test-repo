@@ -2638,7 +2638,7 @@
         margin: 0;
         padding: 0;
         /* height: 100vh; */
-        background-image: url(blur-electronics-evening-919734.jpg);
+        background-image: url(antique-backdrop-background-129731.jpg);
         background-color: #11cd89ba;
         /* background-image: url("images/responsive.svg"); */
         /* background-image: url("images/layout.png"); */
@@ -2647,11 +2647,6 @@
         /* background-repeat: no-repeat, repeat; */
         color: #5A5A5A;
         background-size: cover;
-    }
-    
-    #particles-js {
-        height: 100%;
-        background: #f00;
     }
     
     a:hover,
@@ -11367,7 +11362,7 @@
     }
     
     #jumbohome {
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(0, 0, 0, 0.7);
     }
     
     p {
@@ -11386,4 +11381,20 @@
         text-transform: uppercase;
         letter-spacing: 10px;
         font-size: 3rem
+    }
+    
+    #homeh2 {
+        text-align: center !important;
+        font-size: 7px;
+        color: #FFF;
+        font-family: 'Audiowide', cursive;
+        font-weight: 200;
+        text-shadow: 5px 5px #5F6D72;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+    }
+    
+    .bg {
+        background-color: #eaeaea;
+        background-image: url(social-349568.svg)
     }
