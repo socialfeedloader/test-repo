@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="jumbotron" id="jumbohome">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <h4 id="homeh1">PROFILE</h4>
+                    <div class="table-responsive">
+
+
+                        <table id="mytable" class="table table-bordred table-striped">
+
+                            <thead>
+
+                                <th>
+                                    <id="checkall" />
+                                </th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Edit</th>
+
+
+                            </thead>
+                            <tbody>
+
+                                <tr data-ng-repeat="user in userList">
+                                    <td><input type="checkbox" class="checkthis" /></td>
+                                    <td>{{user.fullname}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.phone}}</td>
+                                    <td>
+                                        <p data-placement="top" data-toggle="tooltip" title="Edit"><a ui-sref="home.editRegistration({id : user._id})"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></a></p>
+                                    </td>
+
+                                </tr>
+                                <div class="clearfix"></div>
+                                <ul class="pagination pull-right">
+                                    <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+                                </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

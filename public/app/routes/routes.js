@@ -7,7 +7,20 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
         })
         .state('dashboard', {
             url: '/dashboard',
-            template: '<h3>DASHBOARD</h3>'
+
+            templateUrl: 'partials/dashboard.html'
+        })
+        .state('dashboard.home', {
+            url: '/userdashboard',
+            templateUrl: 'partials/dashboard_home.html'
+        })
+        .state('dashboard.profile', {
+            url: '/userdashboard',
+            templateUrl: 'partials/profile.html'
+        })
+        .state('dashboard.editprofile', {
+            url: '/editprofile',
+            templateUrl: 'partials/edit profile.html'
         })
         .state('register', {
             url: '/registration',

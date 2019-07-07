@@ -1,0 +1,59 @@
+span {
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #0062cc;
+    border-bottom: 2px solid #0062cc;
+}
+
+.box {
+    padding: 60px 0px;
+}
+
+.box-part {
+    background: #FFF;
+    border-radius: 20px;
+    padding: 60px 10px;
+    margin: 30px 0px;
+    animation-name: box;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
+}
+
+.box-part:hover {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.text {
+    margin: 20px 0px;
+}
+
+.fa {
+    color: #4183D7;
+}
+
+#insta {
+    background-color: palevioletred;
+}
+
+#tweet {
+    background-color: #a6adb7;
+}
+
+#fb {
+    background-color: #313233;
+}
+
+#Pinterest {
+    background-color: red;
+}
+
+#google {
+    background-color: orange;
+}
+
+#git {
+    background-color: #222;
+}

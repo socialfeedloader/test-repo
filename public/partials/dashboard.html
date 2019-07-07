@@ -1,0 +1,24 @@
+<div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a id="navbrand" class="navbar-brand " href="# ">HYPERMEDIA EXPLOSION</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" style="color:#fff">DASHBOARD</a></li>
+                <li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color:#fff;font-weight :5px;"> <span class="fa fa-facebook"></span>FACEBOOK</a>
+
+                </li>
+                <li><a ui-sref="dashboard.home" ui-serf-active="active" style="color:#fff"><span class="fa fa-instagram"></span>INSTAGRAM</a></li>
+                <li><a href="#" style="color:#fff"><span class="fa fa-twitter-square"></span>TWITTER</a></li>
+                <li><a href="#" style="color:#fff">ALL</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ui-sref="dashboard.profile" ui-sref-active="active" style="color:#fff"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+                <li><a ui-sref="dashboard.editprofile" ui-sref-active="active" style="color:#fff"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div ui-view></div>
+</div>
