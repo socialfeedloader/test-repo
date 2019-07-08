@@ -11364,6 +11364,8 @@
         text-shadow: 5px 5px #5F6D72;
         text-transform: uppercase;
         letter-spacing: 4px;
+        clip: rect(0, 900px, 0, 0);
+        animation: noise-anim-2 3s infinite linear alternate-reverse;
     }
     
     #jumbohome {
@@ -11397,4 +11399,8 @@
         text-shadow: 5px 5px #5F6D72;
         text-transform: uppercase;
         letter-spacing: 4px;
+    }
+    
+    .carousel-inner {
+        height: 550px;
     }
