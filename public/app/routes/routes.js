@@ -8,6 +8,7 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
         .state('dashboard', {
             url: '/dashboard',
             abstract: true,
+            controller: 'dashboardController',
             templateUrl: 'partials/dashboard.html'
         })
         .state('dashboard.home', {
@@ -37,7 +38,7 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
 
     // Temp routes until login url not defined
 
-    .state('dashboard.facebookfeeds', {
+        .state('dashboard.facebookfeeds', {
             url: '/facebookfeeds',
             templateUrl: 'partials/facebookfeeds.html'
         })
@@ -52,14 +53,37 @@ socialmedia.config(['$stateProvider', function($stateProvider) {
 
     // Temp routes ends
 
-    .state('dashboard.changepassword', {
-            url: '/change_user_password',
-            templateUrl: 'partials/changepassword.html'
+        // .state('dashboard.changepassword', {
+        //     url: '/change_user_password',
+        //     templateUrl: 'partials/changepassword.html'
+        // })
+
+        .state('dashboard.changepassword', {
+            url: '/adminApi/change_user_password',
+            templateUrl: '/partials/changepassword.html',
+            controller: 'changePasswordController',
+            resolve: {
+                changePassword : changePassword
+            }
         })
+
         .state('dashboard.logout', {
             url: '/logout',
-            templateUrl: 'partials/logout.html'
+            //templateUrl: 'partials/logout.html',
+            controller: 'logout',
+            resolve: {
+                userBeforeLogout : userBeforeLogout
+            }
         })
+
+        // non-dashboard routes
+
+        .state('alreadyloggedin', {
+            url: '/ual',
+            //templateUrl: 'partials/alreadyloggedin.html',
+            controller: 'alreadyloggedin'
+        })
+
         .state('register', {
             url: '/registration',
             templateUrl: '/partials/registration.html',
@@ -115,7 +139,34 @@ function userBeforeLogin($q, userAuth, $state) {
     console.log("access-token:", access_token);
     if (access_token) {
         deferred.reject({ session: true, role: 'admin' });
+        $state.go('alreadyloggedin');
     } else {
+        deferred.resolve();
+    }
+    return deferred.promise;
+}
+
+function changePassword($q, userAuth, $state){
+    var deferred = $q.defer($q, userAuth);
+    var currentUser = userAuth.getCurrentUser();
+    access_token = currentUser ? currentUser.access_token : null;
+    console.log("access-token:", access_token);
+    if(!access_token){
+        deferred.reject({session: false});
+    }else{
+        deferred.resolve();
+    }
+    return deferred.promise;
+}
+
+function userBeforeLogout($q, userAuth, $state){
+    var deferred = $q.defer($q, userAuth);
+    var currentUser = userAuth.getCurrentUser();
+    access_token = currentUser ? currentUser.access_token : null;
+    console.log("access-token:", access_token);
+    if(!access_token){
+        deferred.reject({session: false});
+    }else{
         deferred.resolve();
     }
     return deferred.promise;

@@ -6,12 +6,15 @@
     function Service($http, $q) {
         var service = {};
         service.savePassword = savePassword;
+        service.changePassword = changePassword;
 
         return service;
 
         function savePassword(data) {
-            console.log('from-common-service', data);
             return $http.post('/savePassword', data).then(handleSuccess, handleError);
+        }
+        function changePassword(data){
+            return $http.post('/adminApi/changePassword', data).then(handleSuccess, handleError);
         }
         function handleSuccess(res) {
             return res.data;

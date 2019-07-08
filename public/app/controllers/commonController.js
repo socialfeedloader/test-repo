@@ -58,7 +58,7 @@ socialmedia.controller('loginController', ['$state', '$scope', 'mainService', 't
         mainService.login(data)
             .then(function(response) {
                 console.log(response);
-                toaster.pop('success', 'logged in', 'As ' + response.username);
+                toaster.pop('success', 'logged in', 'logged in as ' + response.username);
                 var user = {};
                 user.access_token = response.token;
                 userAuth.setCurrentUser(user);
@@ -68,6 +68,53 @@ socialmedia.controller('loginController', ['$state', '$scope', 'mainService', 't
                 console.log('login-error', error);
                 toaster.pop('error', 'login error', error.message);
             });
+    }
+}])
+
+socialmedia.controller('alreadyloggedin', ['$state', '$scope','userAuth','toaster',function($state, $scope, userAuth, toaster){
+    // $scope.logout = function(){
+    //     console.log('logging out');
+    //     userAuth.setCurrentUser(null);
+    //     toaster.pop('success','logged out', 'user logged out');
+    //     $state.go('login');
+    // }
+    // $scope.gotoDashboard = function(){
+    //     console.log('dashboard');
+    //     $state.go('dashboard.home');
+    // }
+    $state.go('dashboard.home');
+}])
+
+
+socialmedia.controller('changePasswordController',['toaster', '$state', '$scope', '$http', 'commonService', 'userAuth', function(toaster, $state, $scope,  $http, commonService, userAuth){
+    $scope.changePassword = function (data) {
+        var user = userAuth.getCurrentUser('feedback');
+        data.token = user.access_token;
+        console.log('client-access-token:',data.token);
+        if (data.password == data.confirmpassword) {
+            //data.token = $stateParams.token;
+            commonService.changePassword(data)
+            // UserService.changePassword(passwords.newPassword)
+            .then(function(response) {
+                toaster.pop('success','password saved','new password saved successfully');
+            //  $scope.passwords = {};
+            })
+            .catch(function(error) {
+                toaster.pop('error','password was not saved','new password was not saved');
+            });
+        } else {
+            toaster.pop('error','password mismatch','password does not match');
+            //data.confirmPassword = data.password;
+        }
+    }
+}])
+
+socialmedia.controller('dashboardController', ['$state', '$scope','userAuth','toaster',function($state, $scope, userAuth, toaster){
+    $scope.logout = function(){
+        console.log('logging out');
+        userAuth.setCurrentUser(null);
+        toaster.pop('success','logged out', 'user logged out');
+        $state.go('login');
     }
 }])
 

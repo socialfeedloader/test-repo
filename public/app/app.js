@@ -5,3 +5,7 @@
     socialmedia.config(function($locationProvider) {
         $locationProvider.html5Mode(true);
     })
+
+    socialmedia.config(function($httpProvider){
+        $httpProvider.interceptors.push('APIInterceptor');
+    })

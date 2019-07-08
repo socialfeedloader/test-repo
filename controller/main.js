@@ -157,3 +157,38 @@ exports.getUserList = function(req, res) {
     //     })
     // }
 }
+
+exports.changePassword = function(req, res){
+    console.log('trying hard');
+    //console.log('try',req);
+    //console.log('authorization:',req.body.token);
+     var decoded = jwt.verify(req.body.token, secretKey);
+    // console.log(decoded);
+    // //-----------------------------------------------------
+    // // registrationModel.findById({'_id' : decoded._id} , function (err, user) {
+    // //     if (err) {
+    // //         res.status(500).send(err);
+    // //     } else {
+    // //         user.password = req.body.newPassword || user.password;
+    // //         user.save(function (err, user) {
+    // //             res.send({success: true, user: user.withoutPassword()});
+    // //         });
+    // //     }
+    // // });
+    // //------------------------------------------------------
+     var hashPassword = bcrypt.hashSync(req.body.password);
+     registrationModel.updateOne({'_id':decoded._id}, {
+         $set: {
+             "password": hashPassword,
+             "tokenStatus": true //TODO
+         }
+     }, function(updateErr, updateResult) {
+         if(!updateErr){
+             console.log('new-password-saved-successfully:', updateResult);
+             res.json({ message: "new-password-saved-successfully"});
+         }else{
+             res.json({ message: "new-password-was-not-saved"});
+             console.log('new-password-save-error:', updateErr);
+         }
+     })
+}
